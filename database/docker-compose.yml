@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  database:
+    container_name: subdominio-dinamico-django-db
+    image: postgres:15-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=viso
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+volumes:
+  database:
+    driver: local

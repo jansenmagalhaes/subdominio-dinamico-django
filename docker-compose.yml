@@ -1,0 +1,61 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7-alpine
+    command: redis-server
+    hostname: redis
+    restart: always
+    ports:
+      - "6379"
+    networks:
+      - network
+  browser:
+    image: selenium/standalone-firefox:4.1.0
+    hostname: firefox
+    ports:
+      - "4444"    
+    restart: always
+    networks:
+      - network
+  backend:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8080
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "8080:8000"
+    restart: always
+    depends_on:
+      - redis
+      - browser
+    networks:
+      - network
+  celery:
+    build: .
+    command: celery -A core worker --loglevel=INFO
+    volumes:
+      - .:/var/www/app
+    restart: always
+    depends_on:
+      - backend
+      - redis
+      - browser
+    networks:
+      - network
+  celery-beat:
+    build: .
+    command: celery -A core beat --loglevel=INFO
+    volumes:
+      - .:/var/www/app
+    restart: always
+    depends_on:
+      - backend
+      - redis
+      - browser
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block subtitulo %}Cadastro - {% endblock subtitulo %}
+{% block titulo %}Viso Soluções em Gestão{% endblock titulo %}
+
+{% block estilo %}
+
+{% endblock estilo %}
+
+{% block corpo %}
+
+{% include 'cabecalho.html' %}
+
+<main class="flex-fill d-flex flex-wrap">
+    <section class="col-12 p-4 bg-black bg-opacity-75">
+        <h2>Página não autorizada</h2>
+
+        {% include 'mensagens.html' %}
+    </section>
+</main>
+
+{% include 'rodape.html' %}
+
+{% endblock corpo %}
+
+{% block instrucao %}
+
+{% endblock instrucao %}
