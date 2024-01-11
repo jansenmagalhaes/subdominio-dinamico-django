@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'subdominio-dinamico-django-db',
+        'HOST': 'host.docker.internal',
         'PORT': 5432,
     }
 }
