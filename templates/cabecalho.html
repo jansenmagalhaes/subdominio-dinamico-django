@@ -3,7 +3,7 @@
     <div class="ps-2">
         <a class="navbar-brand" href="/">
             <img src="{% static 'img/logo-indefinida.png' %}" alt="" width="30" class="d-inline-block align-text-top">
-            Teste - Subdomínio Dinâmico
+            Aplicação
         </a>
     </div>
     <div class="w-100 ps-2">
@@ -13,15 +13,15 @@
                 {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ user.nome.split.0 }}
+                            {{ user.username.split.0 }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'sair' %}">Sair</a></li>
+                            <li><a class="dropdown-item" href="{% url 'acessos.sair' %}">Sair</a></li>
                         </ul>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Acessar</a>
+                        <a class="nav-link" href="{% url 'acessos.entrar' %}" tabindex="-1" aria-disabled="true">Acessar</a>
                     </li>
                 {% endif %}
     
